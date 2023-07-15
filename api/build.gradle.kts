@@ -3,6 +3,7 @@ plugins {
 }
 
 dependencies {
+    api(project(":infra:infra-opensearch"))
 }
 
 tasks.jar {

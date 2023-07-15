@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    include:
+      - domain
+      - application
+      - infra-opensearch
+    active: local
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+logging:
+  level:
+    root: info
+    com:
+      kidsworld:
+        api: info
+
+server:
+  port: 8080
