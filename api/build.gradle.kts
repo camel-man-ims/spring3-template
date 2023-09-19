@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.tasks.aot.ProcessAot
+
 plugins {
     java
 }

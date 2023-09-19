@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.aot.ProcessAot
 
 allprojects {
     repositories {
@@ -24,6 +25,13 @@ version = "0.0.1-SNAPSHOT"
 java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
+}
+
+tasks.named("processAot") {
+    // Use this to safely access the task's properties
+    this as ProcessAot
+
+    applicationMainClass.set("com.camelman.CamelmanApplication")
 }
 
 tasks.jar {
@@ -78,6 +86,15 @@ subprojects {
         testImplementation("io.kotest:kotest-assertions-core:5.5.4")
         testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.2")
         testImplementation("io.mockk:mockk:1.12.0")
+
+        // https://hogwart-scholars.tistory.com/entry/Spring-Boot-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EB%A1%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8%ED%95%98%EA%B8%B0
+        testImplementation("org.testcontainers:testcontainers:1.16.0") // TC 의존성
+        testImplementation("org.testcontainers:junit-jupiter:1.16.2") // TC 의존성
+        testImplementation("org.testcontainers:postgresql:1.17.6") // PostgreSQL 컨테이너 사용
+        testImplementation("org.testcontainers:jdbc:1.16.0") // DB와의 JDBC connection
+
+        // https://medium.com/dev-genius/tremendous-simplification-of-springboot-development-with-testcontainers-dd543fab91ed
+        testImplementation("org.springframework.boot:spring-boot-testcontainers")
     }
 
     tasks.withType<KotlinCompile> {
@@ -100,5 +117,3 @@ subprojects {
         }
     }
 }
-
-

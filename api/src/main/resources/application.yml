@@ -17,3 +17,17 @@ logging:
 
 server:
   port: 8080
+
+  # jpa 관련 설정
+  jpa:
+    output:
+      ansi:
+        enabled: always
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database: postgresql
+  # Postgres testcontainer
+  datasource:
+    url: jdbc:tc:postgresql:{version}:///{dbname}?TC_INITSCRIPT=file:src/test/resources/schema.sql
+    username: Username
+    password: password
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver

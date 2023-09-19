@@ -10,8 +10,9 @@ plugins {
 }
 
 dependencies {
-    api(project(":domain"))
+    implementation(project(":domain"))
     api(project(":infra:infra-opensearch"))
+    api(project(":infra:infra-rds"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     // https://mvnrepository.com/artifact/com.github.kimkevin/hangulparser
